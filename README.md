@@ -18,6 +18,12 @@ An example of a working app can be found here: http://gain-propane.herokuapp.com
 5. Push and commit as frequent as possible (at least every 1 hour).
 6. Raise a Pull Request.
 
+### Run Rspec on Guard
+1. Run `bundle install`.
+2. Run `bundle exec guard` to initialize guard.
+Guard will automatically run the corresponding rspec tests whenever you save a file.
+To run all rspec tests at once, click on `enter`.
+
 
 ## Models:
 
