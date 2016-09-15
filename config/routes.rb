@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   patch '/orders/:id' => 'orders#update', as: :order
   put '/orders/:id' => 'orders#update'
   post '/customers' => 'customers#create'
-  get '/customers/new' => 'customers#new'
+  get '/customers/new' => 'customers#new', as: :new_customer
   post 'confirmations' => 'confirmations#create'
-  get '/confirmations/new' => 'confirmations#new'
+  get '/confirmations/new' => 'confirmations#new', as: :new_confirmation
   patch '/confirmations/:id' => 'confirmations#update', as: :confirmation
   put '/confirmations/:id' => 'confirmations#update'
   root 'home#index'

@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
   	@order = Order.new(order_params)
   	if @order.save
   		session[:order_id] = @order.id
+      redirect_to new_customer_path
   	end
   end
 
@@ -16,6 +17,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-  	params.require(:order).permit(:weight_in_kg, :quantity, :preferred_time, :notes, :payment_amount_in_cents)
+  	params.require(:order).permit(:state_id, :brand_id, :weight_in_kg, :quantity, :preferred_time, :notes, :payment_amount_in_cents)
   end
 end

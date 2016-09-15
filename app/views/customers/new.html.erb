@@ -1,2 +1,12 @@
-<h1>Customers#new</h1>
-<p>Find me in app/views/customers/new.html.erb</p>
+<p>Order successfully created! Now tell us where to send it.</p>
+<%= form_for @customer do |f| %>
+	<div><%= f.label :name %>
+	<%= f.text_field :name %></div>
+	<div><%= f.label :email %>
+	<%= f.text_field :email %></div>
+	<div><%= f.label :delivery_address %>
+	<%= f.text_area :delivery_address %></div>
+	<div><%= f.label :postcode %>
+	<%= f.text_field :postcode %></div>
+	<%= f.submit 'Next' %> 
+<% end %>
