@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915045204) do
+ActiveRecord::Schema.define(version: 20160915050030) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20160915045204) do
     t.integer  "phone_number"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.boolean  "confirmed"
+    t.string   "otp"
   end
 
   create_table "customers", force: :cascade do |t|
