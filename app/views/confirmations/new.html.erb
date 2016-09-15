@@ -1,2 +1,7 @@
-<h1>Confirmations#new</h1>
-<p>Find me in app/views/confirmations/new.html.erb</p>
+
+<p>One last step: Please enter your phone number so we can send you a confirmation SMS</p>
+
+<%= form_for @confirmation do |f| %>
+ 	<div><%= f.label :phone_number %>
+	<%= f.text_field :phone_number %></div>
+<% end %>

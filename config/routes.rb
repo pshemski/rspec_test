@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/confirmations/new' => 'confirmations#new', as: :new_confirmation
   patch '/confirmations/:id' => 'confirmations#update', as: :confirmation
   put '/confirmations/:id' => 'confirmations#update'
-  get '/deliveries/:delivery_id/orders' => 'deliveries#orders'
+  get '/deliveries/:delivery_id/orders' => 'deliveries#orders', as: :delivery_orders
   get '/deliveries' => redirect('deliveries/login', status: 301)
   get '/deliveries/login' => 'deliveries#login', as: :login_deliveries
   post '/deliveries' => 'deliveries#create'
