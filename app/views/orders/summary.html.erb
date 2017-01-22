@@ -1,0 +1,21 @@
+<table class="table table-striped">
+	<tr><th>Customer's name</th><td><%= @order.customer.name %></td></tr>
+	<tr><th>Address</th><td><%= @order.customer.delivery_address %></td></tr>
+	<tr><th>Postcode</th><td><%= @order.customer.postcode %></td></tr>
+	<tr><th>ETD</th><td><%= @order.preffered_time.strftime("%H:%M") %></td></tr>
+	<tr><th>KG's per item</th><td><%= @order.weight_in_kg %></td></tr>
+	<tr><th>Quantity</th><td><%= @order.quantity %></td></tr>
+	<tr><th>Reference No.</th><td><%= @order.confirmation.otp %></td></tr>	
+	<tr><th>Status</th>
+		<% case @order.state
+			when State.confirmed %>
+				<td>Confirmed</td> 
+			<% when State.assigned %>
+				<td>Assigned</td>
+			<% when State.in_transit %>
+				<td>In transit</td>					
+			<% else %>
+			<td>Delivered</td>
+		<% end %>
+	</tr>
+</table>

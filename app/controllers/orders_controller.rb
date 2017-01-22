@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def summary
-    @orders = Order.all
+    @order = Order.find(params[:order_id])
   end
 
   def create

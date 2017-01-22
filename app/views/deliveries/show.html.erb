@@ -1,0 +1,50 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Customer's name</th>
+			<th>Address</th>
+			<th>Postcode</th>
+			<th>ETD</th>
+			<th>KG's per item</th>
+			<th>Quantity</th>
+			<th>Reference No.</th>
+			<th>Notes</th>
+			<th>Status</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @delivery.orders.each do |order| %>
+			<tr>
+				<td><%= order.customer.name %></td>
+				<td><%= order.customer.delivery_address %></td>
+				<td><%= order.customer.postcode %></td>
+				<td><%= order.preffered_time.strftime("%H:%M") %></td>
+				<td><%= order.weight_in_kg %></td>
+				<td><%= order.quantity %></td>
+				<td><%= order.confirmation.otp %></td>
+				<td><%= order.notes %></td>
+				<% if order.state == State.assigned %>
+						<td>Assigned</td>
+						<td>
+						<%= form_for(order, method: :patch) do |f| %>
+							<%= f.hidden_field :state_id, value: order.state_id + 1 %>
+							<%= f.submit 'Transfer', class: "btn btn-default btn-sm" %>
+						<% end %>
+						</td>
+					<% elsif order.state == State.in_transit %>
+						<td>In transit</td>
+						<td>
+						<%= form_for(order, method: :patch) do |f| %>
+							<%= f.hidden_field :state_id, value: order.state_id + 1 %>
+							<%= f.submit 'Deliver', class: "btn btn-default btn-sm" %>
+						<% end %>
+						</td>
+					<% else %>
+						<td>Delivered</td>
+						<td></td>
+				<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

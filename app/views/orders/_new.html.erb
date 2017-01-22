@@ -1,0 +1,8 @@
+<%= simple_form_for @order do |f| %>	
+	<%= f.association :brand, prompt: '--select--' %>
+	<%= f.input :weight_in_kg, collection: ['12', '14'], prompt: '--select--' %>
+	<%= f.input :quantity, collection: ['1', '2', '3', '4', '5'], prompt: '--select--' %>
+	<%= f.input :preffered_time, :as => :time, :minute_step => 15 %>
+	<%= f.input :notes %>
+	<%= f.submit 'Next', class: 'btn btn-primary' %>	
+<% end %>

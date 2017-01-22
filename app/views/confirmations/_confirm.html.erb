@@ -1,0 +1,5 @@
+<%= simple_form_for @confirmation, html: { class: 'form-inline' } do |f| %>
+  <%= f.hidden_field :order_id, value: session[:order_id] %>
+	<%= f.input :otp, label: "Have a confirmation code? Enter it here:" %>
+	<%= f.submit 'Confirm', class: 'btn btn-primary', id: 'confirm-btn' %>
+<% end %>
