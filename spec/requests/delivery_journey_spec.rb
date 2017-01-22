@@ -48,7 +48,7 @@ RSpec.describe "Deliveries", type: :request do
       {
         weight_in_kg: 12,
         quantity: 1,
-        preferred_time: Time.now,
+        preffered_time: Time.now,
         notes: "notes",
         payment_amount_in_cents: 2500,
         brand: Brand.find_or_create_by(name: "Petron"),

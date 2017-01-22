@@ -1,2 +1,4 @@
-<h1>Deliveries#login</h1>
-<p>Find me in app/views/deliveries/login.html.erb</p>
+<%= simple_form_for(:deliveries, url: deliveries_path) do |f| %>
+	<%= f.input :phone_number %>
+	<%= f.submit 'login', class: "btn btn-primary" %>
+<% end %>

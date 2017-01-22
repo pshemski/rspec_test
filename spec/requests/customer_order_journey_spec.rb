@@ -6,7 +6,7 @@ RSpec.describe "Customer Order Journey", type: :request do
     {
       weight_in_kg: 12,
       quantity: 1,
-      preferred_time: Time.now,
+      preffered_time: Time.now,
       notes: "notes",
       payment_amount_in_cents: 2500,
       brand_id: Brand.find_or_create_by(name: "Petron").id,
@@ -39,7 +39,7 @@ RSpec.describe "Customer Order Journey", type: :request do
       brand_select_form = '<select name="order[brand_id]" id="order_brand_id">'
       weight_select_form = '<select name="order[weight_in_kg]" id="order_weight_in_kg">'
       quantity_select_form = '<select name="order[quantity]" id="order_quantity">'
-      time_input_form = 'name="order[preferred_time]"'
+      time_input_form = 'name="order[preffered_time]"'
       notes_input_form = 'name="order[notes]"'
       submit_button = '<input type="submit"'
 

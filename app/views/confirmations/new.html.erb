@@ -1,7 +1,7 @@
-
-<p>One last step: Please enter your phone number so we can send you a confirmation SMS</p>
-
-<%= form_for @confirmation do |f| %>
- 	<div><%= f.label :phone_number %>
-	<%= f.text_field :phone_number %></div>
+<h4>One last step: Please enter your phone number so we can send you a confirmation SMS</h4>
+<%= simple_form_for @confirmation do |f| %>
+	<%= f.hidden_field :order_id, value: session[:order_id] %>
+	<%= f.hidden_field :customer_id, value: session[:customer_id] %>
+	<%= f.input :phone_number %>
+	<%= f.submit 'Done', class: "btn btn-primary" %>	
 <% end %>

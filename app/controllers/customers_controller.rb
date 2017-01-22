@@ -5,16 +5,16 @@ class CustomersController < ApplicationController
 
   def create
   	@customer = Customer.new(customer_params)
-  	if @customer.save
-      
+    if @customer.save
+      session[:customer_id] = @customer.id
+      current_order.update_attribute(:customer_id, @customer.id)
       redirect_to new_confirmation_path
-  	else
-  	end
+    end
   end
 
   private
 
   def customer_params
-  	params.require(:customer).permit(:name, :email, :delivery_address, :postcode)
+  	params.require(:customer).permit(:delivery_address, :email, :name, :postcode)
   end
 end

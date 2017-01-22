@@ -1,0 +1,56 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Customer's name</th>
+			<th>Address</th>
+			<th>Postcode</th>
+			<th>ETD</th>
+			<th>KG's p/item</th>
+			<th>Quantity</th>
+			<th>Status</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @orders.each_with_index do |order, index| %>
+			<tr>
+				<td><%= index + 1 %></td>
+				<td><%= order.customer.name %></td>
+				<td><%= order.customer.delivery_address %></td>
+				<td><%= order.customer.postcode %></td>
+				<td><%= order.preffered_time.strftime("%H:%M") %></td>
+				<td><%= order.weight_in_kg %></td>
+				<td><%= order.quantity %></td>
+				<% case order.state
+						when State.pending %>
+						<td>Not confirmed yet</td>
+						<td><button class="btn btn-danger btn-sm" disabled="disabled">Awaiting confirmation</button></td>
+					<% when State.confirmed %>
+						<td>Confirmed </td>
+						<td>
+						<%= form_for(order, method: :patch) do |f| %>
+							<%= f.hidden_field :delivery_id, value: current_delivery.id %>
+							<%= f.hidden_field :state_id, value: order.state_id + 1 %>
+							<%= f.submit 'Asign to me', class: "btn btn-default btn-sm" %>
+						<% end %>
+						</td>
+					<% when State.assigned %>
+						<td>Assigned to <%= order.delivery.name %></td>
+						<td>
+						<%= form_for(order, method: :patch) do |f| %>
+							<%= f.hidden_field :state_id, value: order.state_id + 1 %>
+							<%= f.submit 'Awaiting transfer', class: "btn btn-primary btn-sm", disabled: true %>
+						<% end %>
+						</td>
+					<% when State.in_transit %>
+						<td>In transit by <%= order.delivery.name %></td>
+						<td><button class="btn btn btn-warning btn-sm" disabled="disabled">In Transit</button></td>
+					<% else %>
+						<td>Delivered by <%= order.delivery.name %> on <%= order.updated_at.strftime("%d/%m/%Y") %> at <%= order.updated_at.strftime("%H:%M") %></td>
+						<td><button class="btn btn btn-success btn-sm" disabled="disabled">Delivered</button></td>
+				<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

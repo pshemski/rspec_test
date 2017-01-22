@@ -6,9 +6,30 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= yield %>
-
-</body>
+	<body>
+		<nav class="navbar navbar-inverse navbar-static-top">
+	    <div class="container">
+	      <div class="navbar-header">
+	        <a class="navbar-brand" >Ordering</a>
+	      </div>
+	      <ul class="nav navbar-nav">
+	        <% if logged_in? %>
+	        	<li <% if params[:controller] == "deliveries" && params[:action] == "show" %> class="active"<% end %>><a href="<%= delivery_path(current_delivery) %>">My Deliveries</a></li>
+	        	<li <% if params[:controller] == "deliveries" && params[:action] == "orders" %> class="active"<% end %>><a href="<%= delivery_orders_path(current_delivery) %>">Orders</a></li>
+	        	<li><%= link_to 'Logout', delivery_path(current_delivery), method: 'delete' %></li>
+	        <% else %>
+	        	<li <% if params[:controller] == "home" && params[:action] == "index" %> class="active"<% end %>><a href="<%= root_path %>">Home</a></li>
+	        	<li <% if params[:controller] == "deliveries" && params[:action] == "login" %> class="active"<% end %>><a href="<%= login_deliveries_path %>">Login</a></li>
+	        <% end %>
+	      </ul>
+	    </div>
+	  </nav>
+	  <div class="container">
+			<% flash.each do |message_type, message| %>
+				<p><strong><%= message %></strong></p>
+			<% end %>
+			<%= yield %>
+			<% #= debug(params) if Rails.env.development? %>
+		</div>
+	</body>
 </html>

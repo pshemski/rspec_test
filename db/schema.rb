@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915050030) do
+ActiveRecord::Schema.define(version: 20161230100623) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
@@ -20,19 +20,19 @@ ActiveRecord::Schema.define(version: 20160915050030) do
   end
 
   create_table "confirmations", force: :cascade do |t|
-    t.integer  "order_id"
-    t.integer  "customer_id"
-    t.integer  "phone_number"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
     t.boolean  "confirmed"
     t.string   "otp"
+    t.string   "phone_number"
+    t.integer  "customer_id"
+    t.integer  "order_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string   "name"
+    t.text     "delivery_address"
     t.string   "email"
-    t.string   "delivery_address"
+    t.string   "name"
     t.string   "postcode"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -46,20 +46,19 @@ ActiveRecord::Schema.define(version: 20160915050030) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "weight_in_kg"
+    t.text     "notes"
+    t.integer  "payment_amount_in_cents"
+    t.datetime "preffered_time"
     t.integer  "quantity"
-    t.datetime "preferred_time"
-    t.string   "notes"
+    t.integer  "weight_in_kg"
     t.integer  "brand_id"
+    t.integer  "delivery_id"
+    t.integer  "state_id"
     t.integer  "customer_id"
+    t.integer  "confirmation_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.integer  "state_id"
-    t.integer  "delivery_id"
-    t.integer  "payment_amount_in_cents"
   end
-
-  add_index "orders", ["customer_id"], name: "index_orders_on_customer_id"
 
   create_table "states", force: :cascade do |t|
     t.string   "state"

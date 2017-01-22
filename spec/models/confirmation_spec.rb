@@ -22,7 +22,7 @@ describe Confirmation, type: :model do
     {
       weight_in_kg: 12,
       quantity: 1,
-      preferred_time: Time.now,
+      preffered_time: Time.now,
       notes: "none",
       brand_id: Brand.first.id,
       customer_id: customer.id
