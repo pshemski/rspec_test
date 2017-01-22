@@ -1,53 +1,23 @@
-## GrabGas Lite Rails Assessment
+This README would normally document whatever steps are necessary to get the application up and running.
 
-This is NEXTACADEMY Rails assessment. You are not allowed to copy or share the files from this repo without
-written permission from NEXTACADEMY.
+Things you may want to cover:
 
-This is a mock exercise to create a lite version of the GrabGas.
+Ruby version
 
-An example of a working app can be found here: http://gain-propane.herokuapp.com/
+System dependencies
 
-## Duration
-8 Hours
+Configuration
 
-## To Start
-1. Fork the repo.
-2. Clone the repo down to your local machine.
-3. Add your Ruby version into Gemfile.
-4. Work on your solution (on branch).
-5. Push and commit as frequent as possible (at least every 1 hour).
-6. Raise a Pull Request.
+Database creation
 
-### Run Rspec on Guard
-1. Run `bundle install`.
-2. Run `bundle exec guard` to initialize guard.
-Guard will automatically run the corresponding rspec tests whenever you save a file.
-To run all rspec tests at once, click on `enter`.
+Database initialization
 
+How to run the test suite
 
-## Models:
+Services (job queues, cache servers, search engines, etc.)
 
-![Entity Relationship Diagram](erd.jpg)
+Deployment instructions
 
-## Routes:
+…
 
-
-```
-          Prefix Verb  URI Pattern                     Controller#Action
-          ------ ----  --- -------                     -----------------
-   order_summary GET   /orders/:order_id/summary       orders#summary
-          orders POST  /orders                         orders#create
-           order PATCH /orders/:id                     orders#update
-                 PUT   /orders/:id                     orders#update
-       customers POST  /customers                      customers#create
-    new_customer GET   /customers/new                  customers#new
-   confirmations POST  /confirmations                  confirmations#create
-new_confirmation GET   /confirmations/new              confirmations#new
-    confirmation PATCH /confirmations/:id              confirmations#update
-                 PUT   /confirmations/:id              confirmations#update
- delivery_orders GET   /deliveries/:delivery_id/orders deliveries#orders
-      deliveries GET   /deliveries                     redirect(301, deliveries/login)
-login_deliveries GET   /deliveries/login               deliveries#login
-                 POST  /deliveries                     deliveries#create
-            root GET   /                               home#index
-```
+Please feel free to use a different markup language if you do not plan to run rake doc:app.
